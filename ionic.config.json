@@ -1,6 +1,8 @@
 {
   "name": "caclearingfotocrop",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "29adfcd9"
 }
