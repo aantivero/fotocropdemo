@@ -1,48 +1,88 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      CAC Foto Crop
-    </ion-title>
+    <ion-title>CAC Foto/Crop</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="danger" (click)="reset()">
+        Resetear
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="primary">
+      <ion-button icon-only color="danger" (click)="clear()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+      <ion-button icon-only color="secondary" (click)="save()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content padding>
-<button
-      ion-button
-      block
-      color="primary"
-      (click)="selectImage()">Foto</button>
-
-<img-cropper
-      #cropper
-      [image]="data"
-      [settings]="cropperSettings"
-      (onCrop)="handleCropping($event)"></img-cropper>
-
-<!-- Display the cropped image -->
-<div
-*ngIf="data.image">
-
- <img
-    [src]="data.image"
-    [width]="croppedWidth"
-    [height]="croppedHeight">
-</div>
-
-
-<!-- Display the save image button IF canSave
-  property value is true
--->
-<button
-*ngIf="canSave"
-ion-button
-block
-color="secondary"
-(click)="saveImage()">Guardar</button>
+ 
+<ion-content>
+  <!--button ion-button full (click)="captureImage()" *ngIf="!myImage">Foto</button-->
+  
+  
+  <angular-cropper #angularCropper [cropperOptions]="cropperOptions" [imageUrl]="myImage" *ngIf="myImage"></angular-cropper>
+  <ion-button expand="full" (click)="captureImage()">Foto</ion-button>
+  <!--ion-fab-button (click)="captureImage()">
+      <ion-icon name="camera"></ion-icon>
+  </ion-fab-button-->
+ 
+  <ion-row *ngIf="myImage">
+    <ion-col col-4>
+      <ion-button outline icon-left color="primary" (click)="zoom(true)">
+        <ion-icon name="add"></ion-icon> Zoom
+      </ion-button>
+    </ion-col>
+    <ion-col col-4>
+      <ion-button outline icon-left color="primary" (click)="zoom(false)">
+        <ion-icon name="remove"></ion-icon> Zoom
+      </ion-button>
+    </ion-col>
+    <ion-col col-4>
+      <ion-button outline icon-left (click)="rotate()">
+        <ion-icon name="refresh"></ion-icon> 90º
+      </ion-button>
+    </ion-col>
+ 
+    <ion-col col-2>
+      <ion-button clear (click)="scaleX()">
+        rotar X
+      </ion-button>
+    </ion-col>
+    <ion-col col-2>
+      <ion-button clear (click)="scaleY()">
+        rotar Y
+      </ion-button>
+    </ion-col>
+ 
+    <ion-col col-2>
+      <ion-button clear icon-only (click)="move(0, -10)">
+        <ion-icon name="arrow-round-up"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col col-2>
+      <ion-button clear icon-only (click)="move(0, 10)">
+        <ion-icon name="arrow-round-down"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col col-2>
+      <ion-button clear icon-only (click)="move(-10, 0)">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col col-2>
+      <ion-button clear icon-only (click)="move(10, 0)">
+        <ion-icon name="arrow-round-forward"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+ 
+  <ion-card *ngIf="croppedImage">
+    <ion-card-header>Resultado</ion-card-header>
+    <ion-card-content>
+      <img [src]="croppedImage">
+    </ion-card-content>
+  </ion-card>
+ 
 </ion-content>
-<!--<img [src]="currentImage" *ngIf="currentImage">
-<ion-fab vertical="bottom" horizontal="center" slot="fixed">
-  <ion-fab-button (click)="takePicture()">
-    <ion-icon name="camera"></ion-icon>
-  </ion-fab-button>
-</ion-fab>-->

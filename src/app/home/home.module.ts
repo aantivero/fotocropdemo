@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ImageCropperComponent } from "ngx-img-cropper";
+//import { ImageCropperComponent } from "ngx-img-cropper";
+import { AngularCropperjsModule} from 'angular-cropperjs';
 
 import { HomePage } from './home.page';
 
@@ -12,6 +13,7 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    AngularCropperjsModule, 
     RouterModule.forChild([
       {
         path: '',
@@ -19,6 +21,6 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage, ImageCropperComponent]
+  declarations: [HomePage]//, ImageCropperComponent]
 })
 export class HomePageModule {}
