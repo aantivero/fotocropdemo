@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Camera } from '@ionic-native/camera/ngx';
+//import { ImageCropperComponent } from "ngx-img-cropper";
+import { FotoService } from './services/foto.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +20,8 @@ import { Camera } from '@ionic-native/camera/ngx';
     StatusBar,
     SplashScreen,
     Camera,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    FotoService
   ],
   bootstrap: [AppComponent]
 })
