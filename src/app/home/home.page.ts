@@ -81,6 +81,7 @@ export class HomePage {
   save() {
     let croppedImgB64String: string = this.angularCropper.cropper.getCroppedCanvas().toDataURL('image/jpeg', (100 / 100));
     this.croppedImage = croppedImgB64String;
+    console.dir(this.croppedImage);
   }
   /*@ViewChild('cropper', undefined)
   cropper:ImageCropperComponent;
